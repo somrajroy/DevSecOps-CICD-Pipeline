@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main1
+      - main
   pull_request:
     branches:
-      - main1
+      - main
 
 jobs:
   terraform:
@@ -66,8 +66,15 @@ jobs:
     - name: 'tfsec'
       run: tfsec .
 
+# use id to refer later
+
     - name: 'Terraform Plan'
+      id: plan
       run: terraform plan -out=tfplan
+
+    - name: Terraform plan status
+      if: steps.plan.outcome == 'failure'
+      run: exit 1
 
     - name: 'Terraform Apply'
       if: github.ref == 'refs/heads/main'

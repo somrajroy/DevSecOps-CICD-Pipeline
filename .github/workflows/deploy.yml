@@ -60,12 +60,14 @@ jobs:
     - name: 'Terraform Validate'
       run: terraform validate
 
-    # - name: 'TFLint'
-    #   run: |
-    #     tflint --init
-    #     tflint
     - name: Init TFLint
+      id: tflintinstall
       run: tflint --init
+
+    - name: Check tflint status
+      if: steps.tflintinstall.outcome == 'success' 
+      run: echo "TfLint installed successfully !"
+
     - name: Run TFLint
       id: tflint
       run: tflint -f compact 

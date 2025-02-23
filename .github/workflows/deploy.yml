@@ -67,12 +67,17 @@ jobs:
     - name: Init TFLint
       run: tflint --init
     - name: Run TFLint
-      run: tflint -f compact || echo "TFLint Passed!"
+      id: tflint
+      run: tflint -f compact 
 
+      # check outcome of tflint
+
+    - name: Check tflint status
+      if: steps.tflint.outcome == 'success' 
+      run: echo "TfLint check passed!"
+  
     - name: 'tfsec'
       run: tfsec .
-
-# use id to refer later
 
     - name: 'Terraform Plan'
       id: plan

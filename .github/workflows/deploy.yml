@@ -39,17 +39,29 @@ jobs:
         terraform_version: ${{ env.TF_VERSION }}
 
     - name: 'Install TFLint'
+      id: tflintinstall
       run: |
         curl -sLo tflint.zip https://github.com/terraform-linters/tflint/releases/download/v${{ env.TFLINT_VERSION }}/tflint_linux_amd64.zip
         unzip tflint.zip -d /usr/local/bin/
         tflint --version
 
+# check outcome of tflint istallation
+
+    - name: Check tflint install status
+      if: steps.tflintinstall.outcome == 'success' 
+      run: echo "tflint istallation successful !"
+
     - name: 'Install tfsec'
+      id: tfsecinstall
       run: |
         curl -sLo tfsec https://github.com/aquasecurity/tfsec/releases/download/v${{ env.TFSEC_VERSION }}/tfsec-linux-amd64
         chmod +x tfsec
         mv tfsec /usr/local/bin/
         tfsec --version
+
+    - name: Check tfsec install status
+      if: steps.tfsecinstall.outcome == 'success' 
+      run: echo "tfsec istallation successful !"
 
     - name: 'Terraform Init'
       run: terraform init
@@ -61,14 +73,14 @@ jobs:
       run: terraform validate
 
     - name: Init TFLint
-      id: tflintinstall
+      id: tflintinit
       run: tflint --init
 
-      # check outcome of tflint installation
-      
+      # check outcome of tflint init
+
     - name: Check tflint install status
-      if: steps.tflintinstall.outcome == 'success' 
-      run: echo "TfLint installed successfully !"
+      if: steps.tflintinit.outcome == 'success' 
+      run: echo "tflint init successful !"
 
     - name: Run TFLint
       id: tflint

@@ -60,10 +60,14 @@ jobs:
     - name: 'Terraform Validate'
       run: terraform validate
 
-    - name: 'TFLint'
-      run: |
-        tflint --init
-        tflint
+    # - name: 'TFLint'
+    #   run: |
+    #     tflint --init
+    #     tflint
+    - name: Init TFLint
+      run: tflint --init
+    - name: Run TFLint
+      run: tflint -f compact
 
     - name: 'tfsec'
       run: tfsec .

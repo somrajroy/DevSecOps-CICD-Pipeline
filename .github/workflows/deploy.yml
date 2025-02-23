@@ -13,6 +13,8 @@ jobs:
   terraform:
     name: 'Terraform Lint, Security Check, and Deploy'
     runs-on: ubuntu-latest
+    # Run only on push events
+    if: github.event_name == 'push' 
 
     env:
       AWS_REGION: 'us-west-2'

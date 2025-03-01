@@ -1,22 +1,21 @@
-config {
-    force = false # Ensures that rules are not forcefully enabled.
-    disabled_by_default = false
-    # varfile = ["terraform.tfvars", "terraform2.tfvars"]
-}
-
-
 plugin "aws" {
   enabled = true
   version = "0.24.0"
   source  = "github.com/terraform-linters/tflint-ruleset-aws"
 }
 
+# Disallow variables, data sources, and locals that are declared but never used.
 rule "terraform_unused_declarations" {
   enabled = true
 }
 
 # Disallow variable declarations without description.
 rule "terraform_documented_variables" {
+enabled = true
+}
+
+# Disallow output declarations without description.
+rule "terraform_documented_outputs" {
 enabled = true
 }
 

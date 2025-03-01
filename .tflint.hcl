@@ -1,5 +1,4 @@
 config {
-    call_module_type = "all" # all module calls are validated.
     force = false # Ensures that rules are not forcefully enabled.
     disabled_by_default = false
     # varfile = ["terraform.tfvars", "terraform2.tfvars"]

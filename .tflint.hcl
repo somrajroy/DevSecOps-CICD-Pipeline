@@ -14,6 +14,8 @@ config {
     "terraform-aws-modules/security-group/aws" = true
   }
     # varfile = ["terraform.tfvars", "terraform2.tfvars"]
+    # varfile : Set Terraform variables from tfvars files. 
+    # If terraform.tfvars or any *.auto.tfvars files are present, they will be automatically loaded.
 }
 
 rule "terraform_unused_declarations" {

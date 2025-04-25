@@ -1,6 +1,9 @@
+# https://github.com/terraform-linters/tflint
+# https://github.com/terraform-linters/tflint-ruleset-aws
+
 plugin "aws" {
   enabled = true
-  version = "0.24.0"
+  version = "0.37.0"
   source  = "github.com/terraform-linters/tflint-ruleset-aws"
 }
 

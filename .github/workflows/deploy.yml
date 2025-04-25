@@ -18,13 +18,13 @@ jobs:
 
     env:
       AWS_REGION: 'us-west-2'
-      TF_VERSION: '1.4.0'
+      TF_VERSION: '1.9.0'
       TFLINT_VERSION: '0.46.1'  # Updated to a more recent version
       TFSEC_VERSION: '1.28.1'   # Updated to a more recent version
 
     steps:
     - name: 'Checkout GitHub repository'
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: 'Configure AWS credentials'
       uses: aws-actions/configure-aws-credentials@v1
@@ -34,7 +34,7 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
 
     - name: 'Set up Terraform'
-      uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ env.TF_VERSION }}
 
@@ -49,7 +49,7 @@ jobs:
 
     - name: Check tflint install status
       if: steps.tflintinstall.outcome == 'success' 
-      run: echo "tflint istallation successful !"
+      run: echo "✅ tflint istallation successful !"
 
     - name: 'Install tfsec'
       id: tfsecinstall
@@ -61,13 +61,13 @@ jobs:
 
     - name: Check tfsec install status
       if: steps.tfsecinstall.outcome == 'success' 
-      run: echo "tfsec istallation successful !"
+      run: echo "✅ tfsec istallation successful !"
 
     - name: 'Terraform Init'
       run: terraform init
-
+# check to enforce formatting. fail the pipeline if formatting issues are found.
     - name: 'Terraform Format'
-      run: terraform fmt
+      run: terraform fmt -check -diff 
 
     - name: 'Terraform Validate'
       run: terraform validate
@@ -78,22 +78,40 @@ jobs:
 
       # check outcome of tflint init
 
-    - name: Check tflint install status
+    - name: Check tflint init status
       if: steps.tflintinit.outcome == 'success' 
-      run: echo "tflint init successful !"
+      run: echo "✅ tflint init successful !"
 
     - name: Run TFLint
       id: tflint
       run: tflint -f compact 
 
-      # check outcome of tflint
-
-    - name: Check tflint status
+    - name: Check tflint success
       if: steps.tflint.outcome == 'success' 
-      run: echo "TfLint check passed!"
-  
+      run: echo "✅ TfLint check passed!"
+      
+    - name: Check tflint failure
+      if: steps.tflint.outcome == 'failure'
+      run: |
+        echo "❌ TfLint check failed. Please correct the following issues:"
+        tflint -f compact
+        exit 1
+
     - name: 'tfsec'
-      run: tfsec .
+      id: tfsec
+      # run: tfsec . --format json
+      run: tfsec . --format json --minimum-severity LOW
+
+    - name: Check tfsec status and fail on tfsec errors
+      if: steps.tfsec.outcome == 'failure'
+      run: |
+        echo "❌ tfsec found security issues. Please review and fix the following:"
+        tfsec . --format json
+        exit 1
+
+    - name: Check tfsec success
+      if: steps.tfsec.outcome == 'success'
+      run: echo "✅ tfsec security check passed!"
 
     - name: 'Terraform Plan'
       id: plan
@@ -104,7 +122,7 @@ jobs:
       run: exit 1
 
     - name: 'Terraform Apply'
-      if: github.ref == 'refs/heads/main'
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: terraform apply -auto-approve tfplan
 
   destroy:
@@ -112,13 +130,13 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_REGION: 'us-west-2'
-      TF_VERSION: '1.4.0'
+      TF_VERSION: '1.9.0'
   # Only trigger for workflow_dispatch
     if: github.event_name == 'workflow_dispatch'
 
     steps:
       - name: 'Checkout GitHub repository'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
   
       - name: 'Configure AWS credentials'
         uses: aws-actions/configure-aws-credentials@v1
@@ -128,7 +146,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: 'Set up Terraform'
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ env.TF_VERSION }}
 

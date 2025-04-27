@@ -111,7 +111,7 @@ jobs:
 
     - name: Check tfsec success
       if: steps.tfsec.outcome == 'success'
-      run: echo "✅ tfsec security check passed!"
+      run: echo "✅ tfsec security check passed! "
 
     - name: 'Terraform Plan'
       id: plan

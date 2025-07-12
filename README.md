@@ -1,5 +1,5 @@
 # Automating reliable Cloud Infra & App Deployments by CI/CD Pipelines
-This repository demonstrates how to automate end-to-end cloud infrastructure, application deployments & database changes using CI/CD pipelines. It integrates `tfLint`, `tfsec`, and native `GitHub Actions` to enforce quality gates and secure, reliable IaC delivery.
+This repository demonstrates how to automate end-to-end cloud infrastructure, application deployments & database changes using CI/CD pipelines. It integrates `tfLint`, `tfsec`, and native `GitHub Actions` to enforce quality gates and secure, reliable IaC delivery. It also [introduces Database DevOps for automating schema and data changes](https://www.liquibase.com/resources/guides/database-devops) as part of the pipeline.
 # Introduction
 In modern DevOps, automating infrastructure and application delivery demands integrated quality and security checks within CI/CD pipelines. Tools like TFLint, tfsec, and SonarCloud enable automated linting, static analysis, and vulnerability scanning for Terraform and application code. <br/>
   * `TFLint` enforces Terraform best practices and catches configuration issues early.<br/>
@@ -96,4 +96,4 @@ Below are some additional resources and references for further learning: <br/>
 15. [Secure your Terraform CI/CD Pipelines with tfsec](https://www.youtube.com/watch?v=yq-10oIkkpg&t=159s)<br/>
 16. [GitHub Actions Tutorial: Advanced Concepts You Should Know (Part 1)](https://www.youtube.com/watch?v=E2RRxcq_08E)<br/>
 17. [GitHub Actions Tutorial: Advanced Concepts You Should Know (Part 2)](https://www.youtube.com/watch?v=TKj0KyX8m8o)<br/>
-18. [Guide to Database DevOps](https://www.liquibase.com/resources/guides/database-devops)<br/>
+

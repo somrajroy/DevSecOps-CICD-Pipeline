@@ -1,4 +1,5 @@
 # Automating reliable Cloud Infra & App Deployments by CI/CD Pipelines
+This repository demonstrates how to automate end-to-end cloud infrastructure, application deployments & database changes using CI/CD pipelines. It integrates `tfLint`, `tfsec`, and native `GitHub Actions` to enforce quality gates and secure, reliable IaC delivery.
 # Introduction
 In modern DevOps, automating infrastructure and application delivery demands integrated quality and security checks within CI/CD pipelines. Tools like TFLint, tfsec, and SonarCloud enable automated linting, static analysis, and vulnerability scanning for Terraform and application code. <br/>
   * `TFLint` enforces Terraform best practices and catches configuration issues early.<br/>

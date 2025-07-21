@@ -20,10 +20,12 @@ The [built-in rules cover core Terraform language](https://github.com/terraform-
 Custom rules using the `TFLint plugin` framework allows for enforcing team-specific standards, detecting advanced anti-patterns, and aligning code with organizational policies. <br/>
 To enable a plugin, edit the `.tflint.hcl` file and add the version and source. For example, to add AWS and Azure plugins before code has to be added : <br/>
 
-![image](https://github.com/user-attachments/assets/672b269b-4b83-4f38-85f8-1b36cabae88e)
+<img width="947" height="198" alt="image" src="https://github.com/user-attachments/assets/588fd550-7163-47d8-9813-c6865a82055e" />
+
  <br/><br/>
 
-![image](https://github.com/user-attachments/assets/9458635e-cc37-44d1-8591-566fe1511945)
+<img width="1023" height="173" alt="image" src="https://github.com/user-attachments/assets/1fcfda38-4ef8-4f6b-9de5-5d62c93ff5ea" /> <br/>
+
 
 
 ### Configuring TFLint in DevOps pipelines (refer .tflint.hcl & deploy.yml files in repo as an example)
@@ -42,10 +44,12 @@ This GitHub Actions workflow implements a series of quality gates that ensure in
 #### How Quality Gates Work in this Workflow : From Code to Secure deployment
 
 A high-level view of the CI/CD pipeline: This simplified diagram illustrates the fundamental principle of the automated DevOps pipeline : Code undergoes rigorous checks through "Quality Gates" before it is approved for "Deployment. <br/>
-<img width="900" height="251" alt="image" src="https://github.com/user-attachments/assets/55b556c9-50e3-45ab-829b-af158f7add5d" /> <br/><br/>
+<img width="895" height="192" alt="image" src="https://github.com/user-attachments/assets/30a17bdd-ccf9-4e44-a920-6f7240c74cf7" />
+ <br/><br/>
 
 The diagram below illustrates the series of automated quality gates applied to every code change in the Terraform CI/CD pipeline (GitHub Actions workflow `deploy.yml` file). <br/>
-<img width="1833" height="427" alt="image" src="https://github.com/user-attachments/assets/e4060fe0-8be1-4481-90aa-83499990d385" /><br/><br/>
+<img width="1880" height="426" alt="image" src="https://github.com/user-attachments/assets/b852e51c-beb5-4c68-914c-fedbd83f840e" />
+<br/><br/>
 
 Quality gates are strategically integrated using tools like `TFLint` and `tfsec` to enforce the following. Each gate performs a specific validation and they are fully automated—triggered on every push or pull request to `main` branch. If any gate fails, the pipeline stops immediately, and feedback is provided to the developer, enabling early resolution (Shift Left principle). The gates are mapped to the actual stages of the CI/CD pipeline (`terraform fmt`, `validate`, `tflint`, `tfsec`, `plan`, and `apply`). <br/>
   * `Format Check`: Validates code style and structure using terraform fmt and tflint.<br/>
@@ -62,10 +66,12 @@ Quality gates are strategically integrated using tools like `TFLint` and `tfsec`
 # GitHub Actions CI/CD Workflow: deploy.yml
 The pipeline defines two logically separate jobs:
  * `terraform`: Handles linting, scanning, planning, and applying infrastructure changes. Triggered on every push or pull request to the `main` branch, this job runs a full quality-gated pipeline, ensuring deployments are carefully controlled.It proceeds only if all checks pass (fail-fast on errors) & plans and applies Terraform changes automatically. <br/>
- <img width="407" height="616" alt="image" src="https://github.com/user-attachments/assets/7d255790-b46d-4aa2-a676-1d806a4f1a86" /> <br/>
+ <img width="491" height="765" alt="image" src="https://github.com/user-attachments/assets/c32bc9ce-ed1e-43fc-b08e-f78a05d9b54a" />
+<br/>
 
  * `destroy` job – teardown on Demand : Provides a controlled way to tear down the deployed infrastructure, but only runs manually (requires explicit invocation for safety (`workflow_dispatch`)). This protects against accidental destruction while giving admins/clients the ability to cleanly remove resources when needed. Automating destruction ensures that temporary environments, sandbox deployments, and test resources can be torn down safely without manual mistakes, keeping cloud costs under control. <br/>
- <img width="316" height="575" alt="image" src="https://github.com/user-attachments/assets/c56cd06c-0484-42cd-89eb-6f803c4d2b6a" /> <br/>
+ <img width="357" height="695" alt="image" src="https://github.com/user-attachments/assets/3525dc6a-55aa-4f35-b80e-90180b4f39ec" />
+ <br/>
 
  * The pipeline follows an `automation-first` & `security-first` approach with multiple quality gates, ensuring infrastructure code meets high standards before deployment. Complete implementation details in the `deploy.yml` file in the GitHub repository. This implementation aligns with industry best practices for CI/CD pipelines, where automation is fundamental to maintaining consistent quality and security standards. <br/>
  * `Automated Quality and Security`: Continuous checks for code quality (TFLint) and security vulnerabilities (TFSec) directly within the pipeline. <br/>

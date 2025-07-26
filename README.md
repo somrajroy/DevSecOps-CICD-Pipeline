@@ -15,7 +15,7 @@ In modern DevSecOps pipelines, [application security testing](https://circleci.c
  * `SonarCloud performs SAST for application code` — catching bugs, smells, and security flaws in languages like Java, Python, JavaScript, etc.<br/>
  * Combining `SAST` and `DAST` provides comprehensive coverage across the software development lifecycle. `SAST secures the codebase`, while `DAST validates runtime behavior` — together they strengthen  `DevSecOps` posture and ensuring both design-time and runtime security.<br/>
 
-<img width="1872" height="358" alt="image" src="https://github.com/user-attachments/assets/e3952cfd-19ad-4a12-b47e-a068be602bf1" />
+<img width="1872" height="450" alt="image" src="https://github.com/user-attachments/assets/e3952cfd-19ad-4a12-b47e-a068be602bf1" />
 
 
 # Linting and Static code analysis

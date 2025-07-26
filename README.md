@@ -13,7 +13,7 @@ In modern DevSecOps pipelines, [application security testing](https://circleci.c
  * `DAST (Dynamic Application Security Testing) – Black-box testing` - Simulates real-world attacks on a running application or API to find vulnerabilities in exposed endpoints, logic, or authentication. Black-box testing means testing without internal visibility — like a hacker probing a live app or service.
  * `tfsec` acts as a `SAST tool` for Terraform — scanning `.tf` files for insecure configurations. <br/>
  * `SonarCloud performs SAST for application code` — catching bugs, smells, and security flaws in languages like Java, Python, JavaScript, etc.<br/>
- * Combining `SAST` and `DAST` provides comprehensive coverage across the software development lifecycle. `SAST secures the codebase`, while `DAST validates runtime behavior` — together they strengthen  `DevSecOps` posture and ensuring both design-time and runtime security.<br/>
+ * Combining `SAST` and `DAST` provides comprehensive coverage across the software development lifecycle. `SAST secures the codebase`, while `DAST validates runtime behavior` — together they strengthen  `DevSecOps` posture ensuring both design-time and runtime security.<br/>
 
 <img width="2000" height="600" alt="image" title="Click to view full size" style="display: block; margin: auto;" src="https://github.com/user-attachments/assets/e3952cfd-19ad-4a12-b47e-a068be602bf1" />
 

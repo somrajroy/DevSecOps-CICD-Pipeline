@@ -3,7 +3,7 @@ This repository demonstrates how to automate end-to-end cloud infrastructure, ap
 # Introduction
 [In modern DevSecOps/DevOps, automating infrastructure and application delivery](https://www.redhat.com/en/topics/devops/what-is-devsecops) demands integrated quality and security checks within CI/CD pipelines. Tools like TFLint, tfsec, and SonarCloud enable automated linting, static analysis, and vulnerability scanning for Terraform and application code. <br/>
   * `TFLint` enforces Terraform best practices and catches configuration issues early.<br/>
-  * `tfsec` scans for security misconfigurations in infrastructure code.<br/>
+  * `tfsec` scans for security misconfigurations in infrastructure code. <br/>
   * `SonarCloud` analyzes application code for bugs, vulnerabilities, and code smells.<br/>
   *  This automation enforces standards, reduces risk, and shifts quality left—catching issues early in the development cycle. <br/>
   * This blog demonstrates how to implement `TFLint` and `tfsec` in a GitHub Actions pipeline and demostrates how the setup can be extended to `SonarCloud` for broader application analysis. <br/>
@@ -65,7 +65,7 @@ The diagram below illustrates the series of automated quality gates applied to e
 Quality gates are strategically integrated using tools like `TFLint` and `tfsec` to enforce the following. Each gate performs a specific validation and they are fully automated—triggered on every push or pull request to `main` branch. If any gate fails, the pipeline stops immediately, and feedback is provided to the developer, enabling early resolution (Shift Left principle). The gates are mapped to the actual stages of the CI/CD pipeline (`terraform fmt`, `validate`, `tflint`, `tfsec`, `plan`, and `apply`). <br/>
   * `Format Check`: Validates code style and structure using terraform fmt and tflint.<br/>
   * `Linting Gate (TFLint)`:Ensures Terraform code is syntactically correct, well-documented, and follows best practices. If issues are found, the pipeline fails via `exit 1`.<br/>
-  * `Security Gate (tfsec)`: Scans for misconfigurations and vulnerabilities using `tfsec`.<br/>
+  * `Security Gate (tfsec)`: Scans for misconfigurations and vulnerabilities using `tfsec`. This gate leverages tfsec as a `SAST` tool to ensure security compliance.<br/>
   * `Syntax Gate (terraform validate)` : Ensures the Terraform code is valid and error-free before plan and apply stages (syntactic correctness). <br/>
   * `Plan Review`: Generates and inspects the Terraform execution plan. <br/>
   * `Deployment`: The final gate corresponds to `terraform apply`, contingent on all prior gates passing.<br/>

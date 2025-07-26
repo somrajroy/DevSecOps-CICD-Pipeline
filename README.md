@@ -14,7 +14,9 @@ In modern DevSecOps pipelines, [application security testing](https://circleci.c
  * `tfsec` acts as a `SAST tool` for Terraform — scanning `.tf` files for insecure configurations. <br/>
  * `SonarCloud performs SAST for application code` — catching bugs, smells, and security flaws in languages like Java, Python, JavaScript, etc.<br/>
  * Combining `SAST` and `DAST` provides comprehensive coverage across the software development lifecycle. `SAST secures the codebase`, while `DAST validates runtime behavior` — together they strengthen  `DevSecOps` posture and ensuring both design-time and runtime security.<br/>
- * <img width="1796" height="361" alt="image" src="https://github.com/user-attachments/assets/c1101f09-1f14-457d-975a-41e2e455db86" />
+
+<img width="1872" height="358" alt="image" src="https://github.com/user-attachments/assets/e3952cfd-19ad-4a12-b47e-a068be602bf1" />
+
 
 # Linting and Static code analysis
 `Linting and static code analysis` are crucial for all software projects, including IaC, as they identify issues early and prevents costly failures. A `linter` is a tool that analyzes source code for syntax errors, style violations, anti-patterns, and non-compliance with coding standards. In IaC, tools like TFLint serve this role by checking Terraform configurations for best practices, such as proper variable usage or missing documentation as defined in the `.tflint.hcl` configiguration file.<br/>

@@ -93,7 +93,7 @@ The pipeline defines two logically separate jobs:
   * `Minimized Operational Overhead` : Reduce operational toil & DBA dependency through infrastructure-as-code practices and CI/CD-enabled self-service database change management. We were able to save 30+% labour costs.<br/>
   * `Faster Releases` – Speeds up application delivery by integrating DB changes directly into the CI/CD pipeline.<br/>
   * `Enhanced Consistency`: Ensure the exact same database state across all environments (Dev, QA, Prod) with repeatable deployments.<br/>
-  * `Database DevOps` eliminates bottlenecks, reduces manual errors, and aligns database workflows with modern `DevOps automation practices`. It’s a beneficial recommended for every DevOps practitioner to explore it. While tools like `Flyway` and `Liquibase` offer powerful capabilities, we were able to achieve many key aspects of `Database DevOps` effectively by using normal GitHub CI/CD workflows alone. This reduces complexity and learning overhead while still delivering robust automation. <br/>
+  * `Database DevOps` eliminates bottlenecks, reduces manual errors, and aligns database workflows with modern `DevOps automation practices`. It’s a beneficial & recommended for every DevOps practitioner to explore it. While tools like `Flyway` and `Liquibase` offer powerful capabilities, we were able to achieve many key aspects of `Database DevOps` by using normal GitHub Actions CI/CD workflows alone (YAML pipelines). This reduces complexity and learning overhead while still delivering robust automation. <br/>
 # Appendix
 Below are some additional resources and references for further learning: <br/>
 1. [What is TFLint and How to Lint Your Terraform Code](https://spacelift.io/blog/what-is-tflint)<br/>

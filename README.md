@@ -1,4 +1,4 @@
-# Automating reliable Cloud Infra & App Deployments by CI/CD Pipelines
+# DeVSecOps : Automating reliable Cloud Infra & App Deployments by CI/CD Pipelines
 This repository demonstrates how to automate end-to-end cloud infrastructure, application deployments & database changes using CI/CD pipelines. It integrates `tfLint`, `tfsec`, and native `GitHub Actions` to enforce `Quality Gates` and secure, reliable IaC delivery. [It also introduces Database DevOps for automating schema and data changes](https://www.liquibase.com/resources/guides/database-devops) as part of the pipeline.
 # Introduction
 [In modern DevSecOps/DevOps, automating infrastructure and application delivery](https://www.redhat.com/en/topics/devops/what-is-devsecops) demands integrated quality and security checks within CI/CD pipelines. Tools like TFLint, tfsec, and SonarCloud enable automated linting, static analysis, and vulnerability scanning for Terraform and application code. <br/>
